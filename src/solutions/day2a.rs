@@ -2,7 +2,7 @@ use std::io::BufRead;
 
 pub fn main() {
     // read line by line from file inputs/2
-    let file = std::fs::File::open("src/inputs/2.txt").unwrap();
+    let file = std::fs::File::open("src/inputs/02.txt").unwrap();
     let reader = std::io::BufReader::new(file);
 
     let mut array: Vec<Vec<i32>> = Vec::new();
