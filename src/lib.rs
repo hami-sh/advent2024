@@ -26,6 +26,14 @@ pub fn run_day(day: &str) -> Result<(), Error> {
             solutions::day2b::main();
             Ok(())
         }
+        "3a" => {
+            solutions::day3a::main();
+            Ok(())
+        }
+        "3b" => {
+            solutions::day3b::main();
+            Ok(())
+        }
 
         // <-- INSERT NEW DAY HERE -->
         _ => Err(Error::DayNotImplemented(day.to_string())),
