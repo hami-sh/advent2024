@@ -5,7 +5,7 @@ pub fn main() {
     let reader = std::io::BufReader::new(file);
     let mut first_array: Vec<i32> = Vec::new();
     let mut second_array: Vec<i32> = Vec::new();
-    reader.lines().for_each(|line| {
+    for line in reader.lines() {
         let line = line.unwrap();
         println!("{}", line);
         let words = line.split("   ").collect::<Vec<&str>>();
@@ -13,7 +13,7 @@ pub fn main() {
         let second: i32 = words[1].parse().unwrap();
         first_array.push(first);
         second_array.push(second);
-    });
+    }
 
     let mut map = std::collections::HashMap::new();
     for i in 0..second_array.len() {

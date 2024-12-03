@@ -6,21 +6,21 @@ pub fn main() {
     let reader = std::io::BufReader::new(file);
 
     let mut array: Vec<Vec<i32>> = Vec::new();
-    reader.lines().for_each(|line| {
-        let line = line.unwrap();
+    for l in reader.lines() {
+        let line = l.unwrap();
         let mut row: Vec<i32> = Vec::new();
         line.split(" ").for_each(|word| {
             let number: i32 = word.parse().unwrap();
             row.push(number);
         });
         array.push(row);
-    });
+    }
 
     let mut num_safe = 0;
     for row in array {
         println!("{:?}", row);
 
-        let (safe, reached_index) = is_row_safe(&row);
+        let safe = is_row_safe(&row);
         if safe {
             println!("Safe \n");
             num_safe += 1;
@@ -29,7 +29,7 @@ pub fn main() {
             if (0..row.len()).any(|i| {
                 let mut modified = row.clone();
                 modified.remove(i);
-                is_row_safe(&modified).0
+                is_row_safe(&modified)
             }) {
                 num_safe += 1;
             }
@@ -39,7 +39,7 @@ pub fn main() {
     println!("{}", num_safe);
 }
 
-fn is_row_safe(row: &Vec<i32>) -> (bool, usize) {
+fn is_row_safe(row: &Vec<i32>) -> (bool) {
     let decreasing: bool;
     if row[0] < row[row.len() - 1] {
         decreasing = false;
@@ -76,5 +76,5 @@ fn is_row_safe(row: &Vec<i32>) -> (bool, usize) {
             break;
         }
     }
-    (safe, reached_index)
+    safe
 }
